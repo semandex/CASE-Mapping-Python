@@ -1,4 +1,4 @@
-# CASE-Bindings-Python-Stdlib
+# CASE Mapping Python
 
 ## About the purpose and origins of this tool
 
@@ -7,27 +7,20 @@
 </br></br></br></br>
 
 
-This tool allows the user to create a .json formatted CASE Bundle and add entities from the CASE and UCO ontologies. Work on it begun in 2020 as part of  the [INSPECTr project](https://inspectr-project.eu/) which received funding from the European Union’s Horizon 2020 research and innovation programme, under grant agreement No 833276.
-
-It was created for the internal purposes of the project and originally named _CASE Builder_. It was developed by Ray Genoe and Robert Dowdall of [UCD - Centre for Cybersecurity and Cybercrime Investigation](https://www.ucd.ie/cci/) and Panos Protopapas of [Inlecom Innovation](https://inlecom.gr/). Throughout the development process Fabrizio Turchi of [CNR](https://www.cnr.it/en) aided the development by raising issues relating to (i) the creation of new CASE/UCO entities and (ii) changes that would make the tool more "CASE compliant".
+This tool allows the user to create a .json formatted CASE Bundle and add entities from the CASE and UCO ontologies. Work on it begun in 2020 as part of  the [INSPECTr project](https://inspectr-project.eu/) which received funding from the European Union’s Horizon 2020 research and innovation programme, under grant agreement No 833276. It was created for the internal purposes of the project and originally named _CASE Builder_. It was developed by Ray Genoe, Cormac Doherty, and Robert Dowdall of [UCD - Centre for Cybersecurity and Cybercrime Investigation](https://www.ucd.ie/cci/) and Panos Protopapas of [Inlecom Innovation](https://inlecom.gr/). Throughout the development process Fabrizio Turchi of [CNR](https://www.cnr.it/en) aided the development by raising issues relating to (i) the creation of new CASE/UCO entities and (ii) changes that would make the tool more "CASE compliant".
 
 
 ## Usage
 
 In a nutshell, in order to create a CASE file you need to:
 
-- Create _Facets_ describing all the information you's like to record (_Device Facets_ to describe devices, _Email Address
+- Create _Facets_ describing all the information you'd like to record (_Device Facets_ to describe devices, _Email Address
   Facets_ to describe email addresses, etc.).
 - Append _Facets_ to _Objects_ that "enclose" them. The type of object depends on the facet; e.g, a
   _Device Facet_ should be enclosed by an _Observable Object_. More than one _Facet_ can be enclosed by the same object.
   For example, an _Investigative Action_ Object can enclose both a _Device Facet_ and an _Action Facet_ (describing an
   investigative action performed on the device).
 - Append _Objects_ to a _CASE Bundle_.
-
-Note that often a facet (that is, a piece of information) will need to refer to a different piece of information. For
-example, an SMS _Message Facet_ will need to refer to its sender, described by a _Phone Account Facet_. In these
-situations, the first facet does not directly refer (or "link") to the second; instead, the first facet links to the
-object that encloses the second facet.
 
 
 ## Codebase Structure

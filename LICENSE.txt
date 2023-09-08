@@ -186,7 +186,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright 2020-2023 Ray Genoe, Robert Dowdall
+   Copyright 2020-2023 Ray Genoe, Cormac Doherty, Robert Dowdall
    Copyright 2021-2023 Fabrizio Turchi
    Copyright 2022-2023 Panos Protopapas
 

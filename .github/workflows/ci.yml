@@ -36,7 +36,8 @@ jobs:
 
       - name: Run Example
         run: |
-          poetry run python example.py > case.jsonld
+          pip -q pip install pytz
+          python example.py > case.jsonld
 
       # Ensure that the example output is a valid CASE JSON-LD graph
       - name: CASE Export Validation

@@ -20,3 +20,6 @@ import case_mapping
 def test_version() -> None:
     version = case_mapping.__version__
     assert version is not None
+    assert isinstance(version, str)
+    # Ensure the version matches the expected major.minor.build format
+    assert len(version.split(".")) == 3

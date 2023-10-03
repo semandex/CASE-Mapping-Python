@@ -1,3 +1,5 @@
+import importlib.metadata
+
 from . import case, uco
 
-__version__ = "0.0.0"
+__version__ = importlib.metadata.version("case-mapping")

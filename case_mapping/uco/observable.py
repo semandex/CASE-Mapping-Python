@@ -1223,15 +1223,20 @@ class FacetMessagethread(FacetEntity):
                     _message_ids.add(next_message_id)
         self["uco-observable:messageThread"]["co:size"] = {
             "@type": "xsd:nonNegativeInteger",
-            "@value": str(len(_message_ids))
+            "@value": str(len(_message_ids)),
         }
         if len(_message_ids) > 0:
             _element_list = []
-            _item_list = []
+            # TODO - Need to implement checker for thread having only one terminus.
+            # _item_list = []
             for message_id in sorted(_message_ids):
                 _element = {"@id": message_id}
                 _element_list.append(_element)
-                _item = {"@id": message_id, "@type": "uco-types:ThreadItem", "co:itemContent": {"@id": message_id}}
+                _item = {
+                    "@id": message_id,
+                    "@type": "uco-types:ThreadItem",
+                    "co:itemContent": {"@id": message_id},
+                }
                 if message_id in messages and len(messages[message_id]) > 0:
                     _next_items = []
                     for next_message_id in sorted(messages[message_id]):
@@ -1240,7 +1245,9 @@ class FacetMessagethread(FacetEntity):
             self["uco-observable:messageThread"]["co:element"] = _element_list
 
     def append_messages(self, messages):
-        raise NotImplementedError("TODO - Need to implement checker for thread having only one terminus.")
+        raise NotImplementedError(
+            "TODO - Need to implement checker for thread having only one terminus."
+        )
 
     def append_participants(self, *args):
         self._append_refs("uco-observable:participant", *args)

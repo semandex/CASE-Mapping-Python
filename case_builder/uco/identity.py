@@ -1,4 +1,4 @@
-from ..base import ObjectEntity, FacetEntity
+from ..base import FacetEntity, ObjectEntity
 
 
 class FacetBirthInformation(FacetEntity):

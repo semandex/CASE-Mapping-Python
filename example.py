@@ -163,9 +163,7 @@ bundle.append_to_uco_object(cyber_item4, application_cyber_item)
 #  Adding an Identity block#
 ############################
 identity = uco.identity.Identity()
-identity_name = uco.identity.FacetSimpleName(
-    given_name="Davey", family_name="Jones"
-)
+identity_name = uco.identity.FacetSimpleName(given_name="Davey", family_name="Jones")
 identity_birth = uco.identity.FacetBirthInformation(
     birthdate=datetime.now(timezone.utc)
 )

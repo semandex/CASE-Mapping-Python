@@ -10,7 +10,9 @@ investigation_items = []
 # An item to be added to the case #
 ###################################
 cyber_item1 = uco.observable.ObservableObject()
-device1 = uco.observable.FacetDevice(manufacturer="Nikon", model="D750")
+manufacturer_nikon = uco.identity.Organization(name="Nikon")
+bundle.append_to_uco_object(manufacturer_nikon)
+device1 = uco.observable.FacetDevice(manufacturer=manufacturer_nikon, model="D750")
 cyber_item1.append_facets(device1)
 bundle.append_to_uco_object(cyber_item1)
 
@@ -53,8 +55,10 @@ inv_act = case.investigation.InvestigativeAction(
     start_time=datetime.now(timezone.utc),
 )
 investigation_items.append(inv_act)  # NOTE: Appending whole object not just id
+manufacturer_apple = uco.identity.Organization(name="Apple")
+bundle.append_to_uco_object(manufacturer_apple)
 device2 = uco.observable.FacetDevice(
-    device_type="iPhone", manufacturer="Apple", model="6XS", serial="77"
+    device_type="iPhone", manufacturer=manufacturer_apple, model="6XS", serial="77"
 )
 # inv_act.append_facets(action_ref, device2)
 inv_act.append_facets(device2)
@@ -71,8 +75,10 @@ inv_act9 = case.investigation.InvestigativeAction(
 dummy_observable = uco.observable.ObservableObject(
     state="this is a dummy observable created as an example"
 )
+manufacturer_oneplus = uco.identity.Organization(name="oneplus")
+bundle.append_to_uco_object(manufacturer_oneplus)
 device9 = uco.observable.FacetDevice(
-    device_type="Android", manufacturer="oneplus", model="8", serial="123123"
+    device_type="Android", manufacturer=manufacturer_oneplus, model="8", serial="123123"
 )
 inv_act9.append_facets(device9)
 bundle.append_to_uco_object(inv_act9)

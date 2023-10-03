@@ -200,36 +200,48 @@ bundle.append_to_uco_object(investigation)
 # A message thread to be added to the case #
 ###########################################
 
-# 1st message
-observable_message_facet_1 = uco.observable.ObservableObject()
-facet_message_1 = uco.observable.FacetMessage()
-observable_message_facet_1.append_facets(facet_message_1)
-# 2nd message
-observable_message_facet_2 = uco.observable.ObservableObject()
-facet_message_2 = uco.observable.FacetMessage()
-observable_message_facet_2.append_facets(facet_message_2)
-# 3rd message
-observable_message_facet_3 = uco.observable.ObservableObject()
-facet_message_3 = uco.observable.FacetMessage()
-observable_message_facet_3.append_facets(facet_message_3)
+message_thread_object = uco.observable.MessageThread()
 
-# Create MessageThread (Message class gets created automatically)
-message_thread = uco.observable.FacetMessagethread(
-    messages=[observable_message_facet_1, observable_message_facet_2],
-    message_has_changed=True,
-    message_state="some state",
+# 1st message
+message_1 = uco.observable.Message(
+    has_changed=True,
+    state="some state",
+)
+facet_message_1 = uco.observable.FacetMessage()
+message_1.append_facets(facet_message_1)
+# 2nd message
+message_2 = uco.observable.Message()
+facet_message_2 = uco.observable.FacetMessage()
+message_2.append_facets(facet_message_2)
+# 3rd message
+message_3 = uco.observable.Message()
+facet_message_3 = uco.observable.FacetMessage()
+message_3.append_facets(facet_message_3)
+
+# 1st message is followed by 2nd and 3rd message.
+# Create MessageThread
+message_thread_facet = uco.observable.FacetMessagethread(
     display_name="some name",
+    messages={
+        message_1["@id"]: {
+            message_2["@id"],
+            message_3["@id"],
+        }
+    },
 )
 
+message_thread_object.append_facets(message_thread_facet)
+
+# TODO Restore from list-style demo.
 # Append more messages to MessageThread
-message_thread.append_messages(messages=observable_message_facet_3)
+# message_thread_facet.append_messages(messages=message_3)
 
 # Add all objects to bundle
 objs = (
-    observable_message_facet_1,
-    observable_message_facet_2,
-    observable_message_facet_3,
-    message_thread,
+    message_1,
+    message_2,
+    message_3,
+    message_thread_object,
 )
 bundle.append_to_uco_object(objs)
 

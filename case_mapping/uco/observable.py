@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Dict
 from uuid import uuid4
 
 from pytz import timezone
@@ -1192,16 +1193,15 @@ class FacetSMSMessage(FacetEntity):
 class FacetMessagethread(FacetEntity):
     def __init__(
         self,
+        display_name=None,
         visibility=None,
         participants=None,
-        display_name=None,
         messages=None,
-        message_state=None,
-        message_has_changed=None,
     ):
         """
         A message thread facet is a grouping of characteristics unique to a running commentary of electronic messages
         pertaining to one topic or question.
+        :param messages: Adjacency matrix, encoded as a dictionary.  Key: IRI of Message ObservableObject.  Value: Set of IRIs of Message ObservableObjects.
         """
         super().__init__()
         self["@type"] = "uco-observable:MessageThreadFacet"
@@ -1209,18 +1209,49 @@ class FacetMessagethread(FacetEntity):
         self._bool_vars(**{"uco-observable:visibility": visibility})
         self._node_reference_vars(**{"uco-observable:participant": participants})
 
-        # fixme: once MessageThread revised by the community
-        self["uco-observable:message"] = Message(
-            has_changed=message_has_changed, state=message_state, indexed_items=messages
-        )
-        self["uco-observable:message"].pop("@id")
-        self["uco-observable:message"].pop("@type")
+        self["uco-observable:messageThread"] = {
+            "@id": str(uuid4()),
+            "@type": "uco-types:Thread",
+        }
+
+        # How many messages are there?
+        _message_ids = set()
+        if messages is not None:
+            for message_id in messages:
+                _message_ids.add(message_id)
+                for next_message_id in messages[message_id]:
+                    _message_ids.add(next_message_id)
+        self["uco-observable:messageThread"]["co:size"] = {
+            "@type": "xsd:nonNegativeInteger",
+            "@value": str(len(_message_ids))
+        }
+        if len(_message_ids) > 0:
+            _element_list = []
+            _item_list = []
+            for message_id in sorted(_message_ids):
+                _element = {"@id": message_id}
+                _element_list.append(_element)
+                _item = {"@id": message_id, "@type": "uco-types:ThreadItem", "co:itemContent": {"@id": message_id}}
+                if message_id in messages and len(messages[message_id]) > 0:
+                    _next_items = []
+                    for next_message_id in sorted(messages[message_id]):
+                        _next_items.append({"@id": next_message_id})
+                    _item["uco-types:threadNextItem"] = _next_items
+            self["uco-observable:messageThread"]["co:element"] = _element_list
 
     def append_messages(self, messages):
-        self["uco-observable:message"].append_indexed_items(messages)
+        raise NotImplementedError("TODO - Need to implement checker for thread having only one terminus.")
 
     def append_participants(self, *args):
         self._append_refs("uco-observable:participant", *args)
+
+
+class MessageThread(ObjectEntity):
+    def __init__(self, name=None, facets=None):
+        super().__init__()
+        self["@type"] = "uco-observable:MessageThread"
+        self._str_vars(**{"uco-core:name": name})
+        self.append_facets(facets)
 
 
 class Message(ObjectEntity):
@@ -1330,6 +1361,7 @@ directory = {
     "uco-observable:WirelessNetworkConnectionFacet": FacetWirelessNetworkConnection,
     "uco-observable:MessageThreadFacet": FacetMessagethread,
     "uco-observable:Message": Message,
+    "uco-observable:MessageThread": MessageThread,
     "uco-observable:DiskPartitionFacet": FacetDiskPartition,
     "uco-observable:DiskFacet": FacetDisk,
     "uco-observable:X509Certificate": X509Certificate,

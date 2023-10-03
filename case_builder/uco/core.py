@@ -33,7 +33,7 @@ class Bundle(ObjectEntity):
         self["@type"] = "uco-core:Bundle"
         self._str_vars(
             **{
-                "uco-core:account_name": uco_core_name,
+                "uco-core:name": uco_core_name,
                 "uco-core:specVersion": spec_version,
                 "uco-core:description": description,
             }

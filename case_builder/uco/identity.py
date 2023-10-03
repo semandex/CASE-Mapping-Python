@@ -1,3 +1,5 @@
+from typing import Dict, Optional
+
 from ..base import ObjectEntity, FacetEntity
 
 
@@ -12,10 +14,20 @@ class FacetBirthInformation(FacetEntity):
 
 
 class Identity(ObjectEntity):
-    def __init__(self, facets=None):
+    def __init__(self, name: Optional[str] = None, facets=None):
         super().__init__()
         self["@type"] = "uco-identity:Identity"
+        str_vars: Dict[str, str] = dict()
+        if name is not None:
+            str_vars["uco-core:name"] = name
+        self._str_vars(**str_vars)
         self.append_facets(facets)
+
+
+class Organization(Identity):
+    def __init__(self, name: Optional[str] = None, facets=None):
+        super().__init__(name, facets)
+        self["@type"] = "uco-identity:Organization"
 
 
 class FacetSimpleName(FacetEntity):
@@ -37,5 +49,6 @@ class FacetSimpleName(FacetEntity):
 directory = {
     "uco-identity:BirthInformationFacet": FacetBirthInformation,
     "uco-identity:Identity": Identity,
+    "uco-identity:Organization": Organization,
     "uco-identity:SimpleNameFacet": FacetSimpleName,
 }

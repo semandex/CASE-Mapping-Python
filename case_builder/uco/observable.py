@@ -1,4 +1,5 @@
 from datetime import datetime
+from uuid import uuid4
 
 from pytz import timezone
 
@@ -262,7 +263,7 @@ class FacetContentData(FacetEntity):
         self._bool_vars(**{"uco-observable:isEncrypted": is_encrypted})
 
         if hash_method is not None or hash_value is not None or hash_value != "-":
-            data = {"@type": "uco-types:Hash"}
+            data = {"@id": str(uuid4()), "@type": "uco-types:Hash"}
             if hash_method is not None:
                 data["uco-types:hashMethod"] = {
                     "@type": "uco-vocabulary:HashNameVocab",
@@ -317,10 +318,10 @@ class FacetDevice(FacetEntity):
         """
         super().__init__()
         self["@type"] = "uco-observable:DeviceFacet"
+        self._node_reference_vars(**{"uco-observable:manufacturer": manufacturer})
         self._str_vars(
             **{
                 "uco-observable:deviceType": device_type,
-                "uco-observable:manufacturer": manufacturer,
                 "uco-observable:model": model,
                 "uco-observable:serialNumber": serial,
             }
@@ -577,7 +578,7 @@ class FacetPhoneAccount(FacetEntity):
         self._str_vars(
             **{
                 "uco-observable:phoneNumber": phone_number,
-                "uco-core:displayName": display_name,
+                "uco-observable:displayName": display_name,
             }
         )
 
@@ -603,7 +604,7 @@ class FacetEmailAddress(FacetEntity):
         self._str_vars(
             **{
                 "uco-observable:addressValue": email_address_value,
-                "uco-core:displayName": display_name,
+                "uco-observable:displayName": display_name,
             }
         )
 
@@ -726,6 +727,7 @@ class FacetEXIF(FacetEntity):
         for k, v in kwargs.items():
             if v not in ["", " "]:
                 item = {
+                    "@id": str(uuid4()),
                     "@type": "uco-types:ControlledDictionaryEntry",
                     "uco-types:key": k,
                     "uco-types:value": v,
@@ -858,9 +860,9 @@ class FacetFile(FacetEntity):
         """
         The basic properties associated with the storage of a file on a file system.
         :param file_system_type: The specific type of a file system (e.g., "EXT4")
-        :param file_name: Specifies the account_name associated with a file in a file system (e.g., "IMG_0123.jpg").
+        :param file_name: Specifies the name associated with a file in a file system (e.g., "IMG_0123.jpg").
         :param file_path: Specifies the file path for the location of a file within a filesystem. (e.g., "/sdcard/IMG_0123.jpg")
-        :param file_extension: The file account_name extension. Not present if the file has no dot in its account_name. (e.g., "jpg").
+        :param file_extension: The file name extension. Not present if the file has no dot in its account_name. (e.g., "jpg").
         :param size_bytes: The size of the data in bytes (e.g., integer like 35125)
         :param accessed_time: The datetime the file was last accessed
         :param created_time: The datetime the file was created

@@ -2,3 +2,7 @@
 .idea/
 .vs/
 .vscode/
+
+# Python Environments
+.venv/
+venv/

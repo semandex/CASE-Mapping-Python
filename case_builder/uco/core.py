@@ -17,6 +17,7 @@ class Bundle(ObjectEntity):
         self["@context"] = {
             "@vocab": "http://caseontology.org/core#",
             "case-investigation": "https://ontology.caseontology.org/case/investigation/",
+            "co": "http://purl.org/co/",
             "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
             "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
             "uco-action": "https://ontology.unifiedcyberontology.org/uco/action/",

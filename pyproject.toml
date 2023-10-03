@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "case-mapping"
+version = "0.1.0"
+description = "Classes to support representation of the CASE Cyber Ontology"
+authors = []
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/casework/CASE-Mapping-Python"
+packages = [
+    { include = "case_builder" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytz = "^2023.3.post1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -6,3 +6,7 @@
 # Python Environments
 .venv/
 venv/
+
+# Build Artifacts
+build/
+dist/

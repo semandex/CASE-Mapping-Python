@@ -28,3 +28,16 @@ jobs:
         run: |
           pip -q install pre-commit
           pre-commit run --all-files
+
+      - name: Install Dependencies
+        run: |
+          pip install poetry
+          poetry install
+
+      - name: Run Example
+        run: |
+          python example.py
+
+      - name: Build Package
+        run: |
+          pip install poetry

@@ -21,19 +21,22 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Pre-commit Checks
-        run: |
-          pip -q install pre-commit
-          pre-commit run --all-files
-
       - name: Install Dependencies
         run: |
-          pip -q install poetry pytz
+          pip -q install poetry pre-commit
           poetry install
+
+      - name: Pre-commit Checks
+        run: |
+          pre-commit run --all-files
+
+      - name: Unit Tests
+        run: |
+          poetry run pytest
 
       - name: Run Example
         run: |
-          python example.py > case.jsonld
+          poetry run python example.py > case.jsonld
 
       # Ensure that the example output is a valid CASE JSON-LD graph
       - name: CASE Export Validation

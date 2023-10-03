@@ -9,6 +9,14 @@ repository = "https://github.com/casework/CASE-Mapping-Python"
 packages = [
     { include = "case_builder" }
 ]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Enviroment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries"
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"

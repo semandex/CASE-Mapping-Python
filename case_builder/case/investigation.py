@@ -11,7 +11,7 @@ class InvestigativeAction(ObjectEntity):
     ):
         """
         An investigative action is a CASE object that represents the who, when, what outcome of an action
-        :param name: The account_name of the action (e.g., "annotated")
+        :param name: The name of the action (e.g., "annotated")
         :param start_time: The time, in ISO8601 time format, the action was started (e.g., "2020-09-29T12:13:01Z")
         :param end_time: The time, in ISO8601 time format, the action completed (e.g., "2020-09-29T12:13:43Z")
         :param facets: A list of items to be added to this object (e.g., an ActionReference to the performer & tool)
@@ -45,7 +45,7 @@ class CaseInvestigation(ObjectEntity):
     def __init__(self, name=None, focus=None, description=None, core_objects=None):
         """
         An investigative action is a CASE object that represents the who, where, when of investigation
-        :param name: The account_name of an investigation (e.g., Murder of Suspect B,.)
+        :param name: The name of an investigation (e.g., Murder of Suspect B,.)
         :param focus: The type of investigation (e.g., Murder, Fraud etc,.)
         :param description: Description of the object  (e.g., Investigation carried out on evidence found in house A)
         :param core_objects: A list of items to be added to this object (e.g., items or objects that are in this
@@ -56,7 +56,7 @@ class CaseInvestigation(ObjectEntity):
         self["@type"] = "case-investigation:Investigation"
         self._str_vars(
             **{
-                "uco-core:account_name": name,
+                "uco-core:name": name,
                 "case-investigation:focus": focus,
                 "uco-core:description": description,
             }

@@ -15,7 +15,7 @@ class FacetActionReferences(FacetEntity):
         An action reference contains the details of an InvestigativeAction.
         It groups the properties characterizing the core elements (who, how, with what, where, etc.) for actions.
         The properties consist of identifier references to separate UCO objects detailing the particular property.
-        :param performer: The account_name or id of the person conducting the action
+        :param performer: The name or id of the person conducting the action
         :param instrument: The tool used to conduct the action
         :param location: The general location where the action took place (Room, Building or Town)
         :param environment: The type of environment (lab, office)

@@ -858,9 +858,9 @@ class FacetFile(FacetEntity):
         """
         The basic properties associated with the storage of a file on a file system.
         :param file_system_type: The specific type of a file system (e.g., "EXT4")
-        :param file_name: Specifies the account_name associated with a file in a file system (e.g., "IMG_0123.jpg").
+        :param file_name: Specifies the name associated with a file in a file system (e.g., "IMG_0123.jpg").
         :param file_path: Specifies the file path for the location of a file within a filesystem. (e.g., "/sdcard/IMG_0123.jpg")
-        :param file_extension: The file account_name extension. Not present if the file has no dot in its account_name. (e.g., "jpg").
+        :param file_extension: The file name extension. Not present if the file has no dot in its account_name. (e.g., "jpg").
         :param size_bytes: The size of the data in bytes (e.g., integer like 35125)
         :param accessed_time: The datetime the file was last accessed
         :param created_time: The datetime the file was created

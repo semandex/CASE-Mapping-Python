@@ -23,7 +23,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip -q install poetry pre-commit
+          pip -q install poetry pytz pre-commit
           poetry install
 
       - name: Pre-commit Checks
@@ -36,7 +36,6 @@ jobs:
 
       - name: Run Example
         run: |
-          pip -q install pytz
           python example.py > case.jsonld
 
       # Ensure that the example output is a valid CASE JSON-LD graph

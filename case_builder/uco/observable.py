@@ -317,10 +317,10 @@ class FacetDevice(FacetEntity):
         """
         super().__init__()
         self["@type"] = "uco-observable:DeviceFacet"
+        self._node_reference_vars(**{"uco-observable:manufacturer": manufacturer})
         self._str_vars(
             **{
                 "uco-observable:deviceType": device_type,
-                "uco-observable:manufacturer": manufacturer,
                 "uco-observable:model": model,
                 "uco-observable:serialNumber": serial,
             }

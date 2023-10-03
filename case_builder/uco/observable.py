@@ -577,7 +577,7 @@ class FacetPhoneAccount(FacetEntity):
         self._str_vars(
             **{
                 "uco-observable:phoneNumber": phone_number,
-                "uco-core:displayName": display_name,
+                "uco-observable:displayName": display_name,
             }
         )
 
@@ -603,7 +603,7 @@ class FacetEmailAddress(FacetEntity):
         self._str_vars(
             **{
                 "uco-observable:addressValue": email_address_value,
-                "uco-core:displayName": display_name,
+                "uco-observable:displayName": display_name,
             }
         )
 

@@ -2,13 +2,12 @@
 name = "case-mapping"
 version = "0.1.0"
 description = "Classes to support representation of the CASE Cyber Ontology"
-authors = []
+authors = [
+    "Cyber Domain Ontology Maintainers <operations@cyberdomainontology.org>"
+]
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/casework/CASE-Mapping-Python"
-packages = [
-    { include = "case_builder" }
-]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Enviroment :: Console",
@@ -19,7 +18,6 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
 pytz = "^2023.3.post1"
 
 [build-system]

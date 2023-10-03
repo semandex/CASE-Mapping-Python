@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from case_builder import case, uco
+from case_mapping import case, uco
 
 # Generate a case bundle and list to hold investigation items
 bundle = uco.core.Bundle(description="An Example Case File")

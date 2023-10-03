@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install poetry
+          pip -q install poetry pytz
           poetry install
 
       - name: Run Example

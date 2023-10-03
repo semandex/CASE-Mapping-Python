@@ -27,12 +27,13 @@ jobs:
           poetry install
 
       - name: Pre-commit Checks
-        run: |
-          pre-commit run --all-files
+        run: pre-commit run --all-files
+
+      - name: Unit Tests
+        run: poetry run pytest
 
       - name: Run Example
-        run: |
-          python example.py > case.jsonld
+        run: poetry run python example.py > case.jsonld
 
       # Ensure that the example output is a valid CASE JSON-LD graph
       - name: CASE Export Validation
@@ -45,10 +46,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           pull-request: ${{ github.event.pull_request.number }}
-
-      - name: Unit Tests
-        run: |
-          poetry run pytest
 
       # Always build the package as a sanity check to ensure no issues with the build system
       # exist as part of the CI process

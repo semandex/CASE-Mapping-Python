@@ -1,4 +1,5 @@
 from datetime import datetime
+from uuid import uuid4
 
 from pytz import timezone
 
@@ -262,7 +263,7 @@ class FacetContentData(FacetEntity):
         self._bool_vars(**{"uco-observable:isEncrypted": is_encrypted})
 
         if hash_method is not None or hash_value is not None or hash_value != "-":
-            data = {"@type": "uco-types:Hash"}
+            data = {"@id": str(uuid4()), "@type": "uco-types:Hash"}
             if hash_method is not None:
                 data["uco-types:hashMethod"] = {
                     "@type": "uco-vocabulary:HashNameVocab",

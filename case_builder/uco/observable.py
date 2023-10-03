@@ -727,6 +727,7 @@ class FacetEXIF(FacetEntity):
         for k, v in kwargs.items():
             if v not in ["", " "]:
                 item = {
+                    "@id": str(uuid4()),
                     "@type": "uco-types:ControlledDictionaryEntry",
                     "uco-types:key": k,
                     "uco-types:value": v,

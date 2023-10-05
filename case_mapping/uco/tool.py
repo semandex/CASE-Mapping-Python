@@ -6,7 +6,7 @@ class Tool(ObjectEntity):
         self, tool_name=None, tool_version=None, tool_type=None, tool_creator=None
     ):
         """
-        The Uco tool is a way to define the specfifics of a tool used in an investigation
+        The Uco tool is a way to define the specifics of a tool used in an investigation
         :param tool_name: The name of the tool (e.g., "exiftool")
         :param tool_creator: The developer and or organisation that produces this tool {might need to add a dict here}
         :param tool_type: The type of tool

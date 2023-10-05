@@ -722,6 +722,7 @@ class FacetEXIF(FacetEntity):
         self["@type"] = "uco-observable:EXIFFacet"
 
         self["uco-observable:exifData"] = {
+            "@id": str(uuid4()),
             "@type": "uco-types:ControlledDictionary",
             "uco-types:entry": [],
         }

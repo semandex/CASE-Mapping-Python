@@ -1,0 +1,12 @@
+# IDE Settings
+.idea/
+.vs/
+.vscode/
+
+# Python Environments
+.venv/
+venv/
+
+# Build Artifacts
+build/
+dist/

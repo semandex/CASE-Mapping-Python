@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from case_builder import case, uco
+from case_mapping import case, uco
 
 # Generate a case bundle and list to hold investigation items
 bundle = uco.core.Bundle(description="An Example Case File")
@@ -169,9 +169,7 @@ bundle.append_to_uco_object(cyber_item4, application_cyber_item)
 #  Adding an Identity block#
 ############################
 identity = uco.identity.Identity()
-identity_name = uco.identity.FacetSimpleName(
-    given_name="Davey", family_name="Jones"
-)
+identity_name = uco.identity.FacetSimpleName(given_name="Davey", family_name="Jones")
 identity_birth = uco.identity.FacetBirthInformation(
     birthdate=datetime.now(timezone.utc)
 )

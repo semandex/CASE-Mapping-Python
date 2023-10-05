@@ -25,13 +25,13 @@ In a nutshell, in order to create a CASE file you need to:
 
 ## Codebase Structure
 
-The central part of the codebase is located inside [base.py](./case_builder/base.py) that contains two classes (`FacetEntity`, `ObjectEntity`) and a helper function:
+The central part of the codebase is located inside [base.py](case_mapping/base.py) that contains two classes (`FacetEntity`, `ObjectEntity`) and a helper function:
 
 - `FacetEntity` is the class that all ontology classes are inheriting from either directly (in the case of facet-classes) or through `ObjectEntity` (in the case of object-classes). `FacetEntity` includes all the type checking (e.g., that `int` types are provided where integers are expected according to the ontology) as well as error handling when incorrect data-types are passed.
 - `ObjectEntity` inherits `FacetEntity` and adds an `@id` value (random generated _uuid4_ string) to all classes inheriting from it. It also provides methods to append facet-classes to an object-class.
 - All classes included within all modules in the _case_ and _uco_ folders inherit from either of these two classes, depending on whether these are facets or objects.
 
-Moreover, all modules within the _case_ and _uco_ folders include a `directory` variable; a dictionary returning a class object when provided with the class's type (the classes `@type` value). The [directory.py](./case_builder/directory.py) module then aggregates all these variables and can be imported by the user and used when they require to create classes based on their type.
+Moreover, all modules within the _case_ and _uco_ folders include a `directory` variable; a dictionary returning a class object when provided with the class's type (the classes `@type` value). The [directory.py](case_mapping/directory.py) module then aggregates all these variables and can be imported by the user and used when they require to create classes based on their type.
 
 ## Example Usage
 
@@ -41,7 +41,7 @@ Import the package. This will provide access to the `uco` and `case` libraries w
 class found in _uco-core_ of the UCO ontology, is provided at `uco.core.Bundle` in the builder.
 
 ```python
-from case_builder import *
+from case_mapping import *
 ```
 
 Generate a _CASE Bundle_ by calling on the `Bundle` object from `uco.core`, adding an (optional) `uco_core_name`. Also create an empty array where the

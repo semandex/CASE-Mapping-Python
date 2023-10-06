@@ -29,7 +29,7 @@ file1 = uco.observable.FacetFile(
     size_bytes=35002,
 )
 file_content1 = uco.observable.FacetContentData(
-    byte_order="BigEndian",
+    byte_order="Big-endian",
     magic_number="/9j/ww==",
     mime_type="image/jpg",
     size_bytes=35000,

@@ -253,7 +253,6 @@ class FacetContentData(FacetEntity):
         self["@type"] = "uco-observable:ContentDataFacet"
         self._str_vars(
             **{
-                "uco-observable:byteOrder": byte_order,
                 "uco-observable:magicNumber": magic_number,
                 "uco-observable:mimeType": mime_type,
                 "uco-observable:dataPayload": data_payload,
@@ -262,6 +261,12 @@ class FacetContentData(FacetEntity):
         )
         self._int_vars(**{"uco-observable:sizeInBytes": size_bytes})
         self._bool_vars(**{"uco-observable:isEncrypted": is_encrypted})
+
+        if byte_order:
+            self["uco-observable:byteOrder"] = {
+                "@type": "uco-vocabulary:EndiannessTypeVocab",
+                "@value": byte_order,
+            }
 
         if hash_method is not None or hash_value is not None or hash_value != "-":
             data = {"@id": str(uuid4()), "@type": "uco-types:Hash"}
@@ -1042,7 +1047,7 @@ class ObservableRelationship(ObjectEntity):
         start_time=None,
         end_time=None,
         kind_of_relationship=None,
-        directional=None,
+        directional=False,
     ):
         """
         This object represents an assertion that one or more objects are related to another object in some way
@@ -1051,7 +1056,7 @@ class ObservableRelationship(ObjectEntity):
         :param start_time: The time, in ISO8601 time format, the action was started (e.g., "2020-09-29T12:13:01Z")
         :param end_time: The time, in ISO8601 time format, the action completed (e.g., "2020-09-29T12:13:43Z")
         :param kind_of_relationship: How these items relate from source to target (e.g., "Contained_Within")
-        :param directional: A boolean representing ???? Usually set to True
+        :param directional: A boolean whether a relationship assertion is limited to the context FROM a source object(s) TO a target object.
         """
         super().__init__()
         self["@type"] = "uco-observable:ObservableRelationship"

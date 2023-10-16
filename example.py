@@ -29,7 +29,7 @@ file1 = uco.observable.FacetFile(
     size_bytes=35002,
 )
 file_content1 = uco.observable.FacetContentData(
-    byte_order="BigEndian",
+    byte_order="Big-endian",
     magic_number="/9j/ww==",
     mime_type="image/jpg",
     size_bytes=35000,
@@ -87,7 +87,7 @@ bundle.append_to_uco_object(inv_act9)
 # Adding a CASE Relationship #
 ##############################
 cyber_rel1 = uco.observable.ObservableRelationship(
-    source=cyber_item1, target=cyber_item2, kind_of_relationship="Contained_Within"
+    source=cyber_item1, target=cyber_item2, kind_of_relationship="Contained_Within", directional=True
 )
 path_rel1 = uco.observable.FacetPathRelation(path="/sdcard/IMG_0123.jpg")
 cyber_rel1.append_facets(path_rel1)

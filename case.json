@@ -58,13 +58,16 @@
                 {
                     "@id": "cb113538-46ff-4b4f-880d-04f4cf7063c6",
                     "@type": "uco-observable:ContentDataFacet",
-                    "uco-observable:byteOrder": "BigEndian",
                     "uco-observable:magicNumber": "/9j/ww==",
                     "uco-observable:mimeType": "image/jpg",
                     "uco-observable:dataPayload": "<base 64 encoded data of the file>",
                     "uco-observable:sizeInBytes": {
                         "@type": "xsd:integer",
                         "@value": "35000"
+                    },
+                    "uco-observable:byteOrder": {
+                        "@type": "uco-vocabulary:EndiannessTypeVocab",
+                        "@value": "Big-endian"
                     },
                     "uco-observable:hash": [
                         {
@@ -102,6 +105,7 @@
                     "@id": "5e994d10-bc0d-4fe1-bcf4-67d3e284dd53",
                     "@type": "uco-observable:EXIFFacet",
                     "uco-observable:exifData": {
+                        "@id": "31e54970-4a57-4c25-b740-16df86fa2b4b",
                         "@type": "uco-types:ControlledDictionary",
                         "uco-types:entry": [
                             {
@@ -184,6 +188,7 @@
         {
             "@id": "cc92cb81-3d83-418e-b3f3-2c6a6a2bf988",
             "@type": "uco-observable:ObservableRelationship",
+            "uco-core:isDirectional": true,
             "uco-core:kindOfRelationship": "Contained_Within",
             "uco-core:source": {
                 "@id": "eeb5e60e-39b5-48c3-a831-b6459182f40f"
@@ -407,13 +412,16 @@
                         {
                             "@id": "cb113538-46ff-4b4f-880d-04f4cf7063c6",
                             "@type": "uco-observable:ContentDataFacet",
-                            "uco-observable:byteOrder": "BigEndian",
                             "uco-observable:magicNumber": "/9j/ww==",
                             "uco-observable:mimeType": "image/jpg",
                             "uco-observable:dataPayload": "<base 64 encoded data of the file>",
                             "uco-observable:sizeInBytes": {
                                 "@type": "xsd:integer",
                                 "@value": "35000"
+                            },
+                            "uco-observable:byteOrder": {
+                                "@type": "uco-vocabulary:EndiannessTypeVocab",
+                                "@value": "Big-endian"
                             },
                             "uco-observable:hash": [
                                 {
@@ -451,6 +459,7 @@
                             "@id": "5e994d10-bc0d-4fe1-bcf4-67d3e284dd53",
                             "@type": "uco-observable:EXIFFacet",
                             "uco-observable:exifData": {
+                                "@id": "31e54970-4a57-4c25-b740-16df86fa2b4b",
                                 "@type": "uco-types:ControlledDictionary",
                                 "uco-types:entry": [
                                     {

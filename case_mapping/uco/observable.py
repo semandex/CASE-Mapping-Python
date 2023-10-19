@@ -271,10 +271,7 @@ class FacetContentData(FacetEntity):
         if hash_method is not None or hash_value is not None or hash_value != "-":
             data = {"@id": str(uuid4()), "@type": "uco-types:Hash"}
             if hash_method is not None:
-                data["uco-types:hashMethod"] = {
-                    "@type": "uco-vocabulary:HashNameVocab",
-                    "@value": hash_method,
-                }
+                data["uco-types:hashMethod"] = hash_method
             if hash_value is not None:
                 data["uco-types:hashValue"] = {
                     "@type": "xsd:hexBinary",
@@ -890,9 +887,9 @@ class FacetFile(FacetEntity):
         )
         self._datetime_vars(
             **{
-                "uco-core:objectAccessedTime": accessed_time,
-                "uco-core:objectCreatedTime": created_time,
-                "uco-core:objectModifiedTime": modified_time,
+                "uco-observable:accessedTime": accessed_time,
+                "uco-observable:observableCreatedTime": created_time,
+                "uco-observable:modifiedTime": modified_time,
                 "uco-observable:metadataChangeTime": metadata_changed_time,
             }
         )

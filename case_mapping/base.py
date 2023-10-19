@@ -41,7 +41,7 @@ class FacetEntity(dict):
             for item in args:
                 if isinstance(item, FacetEntity):
                     if refs:
-                        self[key].append({"@id": item.get_id()})
+                        self[key].append({"@id": item.get_id(), "@type": item.get("@type")})
                     elif objects:
                         self[key].append(item)
                 else:
@@ -72,23 +72,27 @@ class FacetEntity(dict):
     def _float_vars(self, **kwargs):
         for key, var in kwargs.items():
             if isinstance(var, float):
-                self[key] = {"@type": "xsd:decimal", "@value": str(var)}
+                self[key] = var
+                # self[key] = {"@type": "xsd:decimal", "@value": str(var)}
             elif isinstance(var, int):
-                self[key] = {"@type": "xsd:decimal", "@value": str(float(var))}
+                self[key] = float(var)
+                # self[key] = {"@type": "xsd:decimal", "@value": str(float(var))}
             else:
                 self.__handle_var_type_errors(key, var, "float")
 
     def _int_vars(self, **kwargs):
         for key, var in kwargs.items():
             if isinstance(var, int):
-                self[key] = {"@type": "xsd:integer", "@value": str(var)}
+                self[key] = var
+                # self[key] = {"@type": "xsd:integer", "@value": str(var)}
             else:
                 self.__handle_var_type_errors(key, var, "int")
 
     def _bool_vars(self, **kwargs):
         for key, var in kwargs.items():
             if isinstance(var, bool):
-                self[key] = {"@type": "xsd:boolean", "@value": var}
+                self[key] = var
+                # self[key] = {"@type": "xsd:boolean", "@value": var}
             else:
                 self.__handle_var_type_errors(key, var, "bool")
 
@@ -104,7 +108,8 @@ class FacetEntity(dict):
     def _nonegative_int_vars(self, **kwargs):
         for key, var in kwargs.items():
             if isinstance(var, int) and not var < 0:
-                self[key] = {"@type": "xsd:nonNegativeInteger", "@value": str(var)}
+                self[key] =  var
+                # self[key] = {"@type": "xsd:nonNegativeInteger", "@value": str(var)}
             else:
                 self.__handle_var_type_errors(key, var, "non-negative integer")
 
@@ -113,13 +118,15 @@ class FacetEntity(dict):
             if isinstance(var, list) or isinstance(var, tuple):
                 is_object_entity = [isinstance(item, ObjectEntity) for item in var]
                 if all(is_object_entity):
-                    self[key] = [{"@id": item.get_id()} for item in var]
+                    self[key] = [{"@id": item.get_id(), "@type": item.get("@type")} for item in var]
+                    # self[key] = [{"@id": item.get_id()} for item in var]
                 else:
                     self.__handle_list_type_errors(
                         key, var, "ObjectEntity (no @id key)"
                     )
             elif isinstance(var, ObjectEntity):
-                self[key] = {"@id": var.get_id()}
+                self[key] = {"@id": var.get_id(), "@type": var.get("@type")}
+                # self[key] = {"@id": var.get_id()}
             else:
                 self.__handle_var_type_errors(key, var, "ObjectEntity (no @id key)")
 
